@@ -7,6 +7,10 @@ var title = '';
 if (action === 'movie-this' && process.argv[3] === undefined) {
   title = 'Mr. Nobody';
 }
+//If there is no song, return the sign
+if (action === 'spotify-this-song' && process.argv[3] === undefined) {
+  title = 'The Sign';
+}
 
 //for loop to account for spacing in title
 for (var i = 3; i < process.argv.length; i++) {
@@ -83,10 +87,9 @@ function movie() {
 }
 
 
-
 function spotify() {
   var spotify = require('spotify');
-spotify.search({ type: 'track', query: title}, function(err, data) {
+spotify.search({type: 'track', query: title}, function(err, data) {
     if ( err ) {
         console.log('Error occurred: ' + err);
         return;
@@ -105,5 +108,33 @@ spotify.search({ type: 'track', query: title}, function(err, data) {
 
 });
 
+}
+
+function random() {
+  // fs is an NPM package for reading and writing files
+var fs = require("fs");
+
+// This block of code will read from the "movies.txt" file.
+// It's important to include the "utf8" parameter or the code will provide stream data (garbage)
+// The code will store the contents of the reading inside the variable "data"
+fs.readFile("random.txt", "utf8", function(error, data) {
+
+  // Then split it by commas (to make it more readable)
+  var output = data.split(",");
+
+  //set variables accordingly
+  action = output[0];
+  title = output[1];
+    if (action === 'spotify-this-song'){
+      spotify();
+    }
+    if (action === 'my-tweet'){
+      tweet();
+    }
+    if (action === 'movie-this'){
+      movie();
+    }
+
+});
 }
 
