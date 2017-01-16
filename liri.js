@@ -99,11 +99,13 @@ spotify.search({type: 'track', query: title}, function(err, data) {
       // The song's name
       // A preview link of the song from Spotify
       // The album that the song is from
-    var songInfo = data.tracks.items[0];
-    var songResult = console.log("Artist Name: " + songInfo.artists[0].name)
-                     console.log("Song Name: " + songInfo.name)
-                     console.log("Album Name " + songInfo.album.name)
-                     console.log("Preview Link: " + songInfo.preview_url)
+    for (i=0; i<data.tracks.items.length; i++){
+    console.log('');
+    console.log("Artist Name: " + data.tracks.items[i].artists[0].name);
+    console.log("Track Name: " + data.tracks.items[i].name);
+    console.log("Album Name: " + data.tracks.items[i].album.name);
+    console.log("Preview Link: " + data.tracks.items[i].preview_url);
+    }
     }
 
 });
