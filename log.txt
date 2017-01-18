@@ -1,0 +1,1 @@
+/usr/local/Cellar/node/6.7.0/bin/node/Users/sandigau/Desktop/Coding Boot Camp/liri-node-app/liri.js my-tweet 

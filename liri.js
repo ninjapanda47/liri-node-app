@@ -25,18 +25,22 @@ for (var i = 3; i < process.argv.length; i++) {
 //If statements to check action
 if (action === 'my-tweet') {
 	tweet();
+  append();
 };
 
 if (action === 'spotify-this-song') {
 	spotify();
+  append();
 };
 
 if (action === 'movie-this') {
 	movie();
+  append();
 };
 
 if (action === 'do-what-it-says') {
 	random();
+  append();
 };
 
 //functions
@@ -139,4 +143,29 @@ fs.readFile("random.txt", "utf8", function(error, data) {
 
 });
 }
+
+//Function to append command
+function append() {
+  var fs = require("fs");
+
+var textFile = ("./log.txt");
+
+fs.appendFile(textFile, process.argv[0] + process.argv[1]+ " " + process.argv[2] + " " + title, function(err) {
+
+  // If an error was experienced we say it.
+  if (err) {
+    console.log(err);
+  }
+
+  // If no error is experienced, we'll log the phrase "Content Added" to our node console.
+  else {
+    console.log("");
+  }
+
+});
+}
+
+
+
+
 
